@@ -1,8 +1,6 @@
-# sfrc-FE
-
 # Secret Family Recipes Front End Team, Lambda School, Build Week, July 2019
 
-## Front-End Architects: Mariana, Oscar, Arthur
+## Front-End Architects: Mariana, Oscar, Arthur Lei
 
 ## Pitch:
 
