@@ -23,3 +23,4 @@ Anyone can go out and buy a cookbook these days, but I want a place to store all
 
 Ability to upload a picture of the original recipe along with the recipe entry.
 By default all recipes uploaded can only be viewed by the person loggin in, a stretch goal would add the ability to invite someone with the link to view the recipe.
+//
