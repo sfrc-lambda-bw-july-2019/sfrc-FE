@@ -1,0 +1,9 @@
+[build]
+    base = 'sfrc/'
+    command = 'yarn build'
+    publish = 'sfrc/build'
+
+[[redirects]]
+    from = '/*'
+    to = '/index.html'
+    status = 200
