@@ -25,6 +25,7 @@ Ability to upload a picture of the original recipe along with the recipe entry.
 By default all recipes uploaded can only be viewed by the person loggin in, a stretch goal would add the ability to invite someone with the link to view the recipe.
 
 ## Fake Data/Mock JSON
+
 ```
 const fakeDataRecipes = [
     {
@@ -35,7 +36,7 @@ const fakeDataRecipes = [
         instructions: "1. Get bread. 2. Get peanut butter and jam. 3. Put together.",
         category:["snack", "dinner", "vegetarian", "sandwich"],
         user_id:1
-    }, 
+    },
     {
         id:1,
         title:"Peanut Butter and Banana Sandwich",
@@ -52,7 +53,7 @@ const fakeDataUsers = [
         user_id:1,
         username:"john_smith",
         password:"password"
-    }, 
+    },
     {
         user_id:2,
         username:"jane_doe",
@@ -62,10 +63,10 @@ const fakeDataUsers = [
 
 ```
 
-/*
+/\*
 To Add Later:
-- Field for pictures/uploading pictures
-- Field for personal ratings 
-- Possible fields needed for access control/external linking
-*/
 
+- Field for pictures/uploading pictures
+- Field for personal ratings
+- Possible fields needed for access control/external linking
+  \*/
