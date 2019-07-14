@@ -5,6 +5,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import PrivateRoute from './components/PrivateRoute';
 import HomePage from './components/HomePage';
+import styled from 'styled-components';
 import {
   BrowserRouter as Router,
   Route,
@@ -12,14 +13,25 @@ import {
   NavLink
 } from 'react-router-dom';
 
+const TopNavBar= styled.header`
+  border: 2px dashed black;
+  display:flex;
+  flex-flow:row wrap;
+  justify-content: center;
+  width: 80%;
+  margin: 0 auto;
+`;
+
 class App extends React.Component {
   render() {
     return (
-      <div>
-        <h1>Secret Family Recipes Cookbook</h1>
+      <div className="main-container">
+        <h1 className="app-title">Secret Family Recipes Cookbook</h1>
         <Router>
-          <Link to='/login'>Login</Link>
-          <Link to='/register'>Sign Up</Link>
+          <TopNavBar>
+            <Link className="top-nav-link" to='/login'>Login</Link>
+            <Link className="top-nav-link" to='/register'>Sign Up</Link>
+          </TopNavBar>
           <Route exact path='/login' component={Login} />
           <Route exact path='/register' component={Register} />
           <PrivateRoute path='/homepage' component={HomePage} />
