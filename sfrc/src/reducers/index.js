@@ -1,122 +1,156 @@
-/*
-  Please de-smurfify this and actions
-*/
-
 import {
-  FETCHING_SMURFS,
-  FETCHING_SMURFS_SUCCESSFUL,
-  FETCHING_SMURFS_FAILED,
-
-  ADDING_SMURF_START,
-  ADDING_SMURF_SUCCESSFUL,
-  ADDING_SMURF_FAILED,
-
-  DELETING_SMURF_START,
-  DELETING_SMURF_SUCCESSFUL,
-  DELETING_SMURF_FAILED
-  
-} from '../actions'
-
+  // USER_UNAUTHORIZED,
+  LOGIN_START,
+  LOGIN_SUCCESS,
+  LOGOUT,
+  REG_START,
+  REG_SUCCESS
+  // FETCH_DATA_START,
+  // FETCH_DATA_SUCCESS,
+  // GET_USERS_START,
+  // GET_USERS_SUCCESS,
+  // ADD_START,
+  // ADD_SUCCESS,
+  // DELETE_START,
+  // DELETE_SUCCESS,
+  // EDIT_START,
+  // EDIT_SUCCESS
+} from "../actions";
 
 const initialState = {
-  smurfs: [],
-  fetchingSmurfs: false,
-  addingSmurf: false,
-  updatingSmurf: false,
-  deletingSmurf: false,
+  notes:[],
+  users: [],
+  loggedIn: false,
+  loggingIn: false,
+  registering: false,
+  token: null,
+  fetchingNotes: false,
+  gettingUsers: false,
+  addingNotes: false,
+  updatingNotes: false,
+  deletingNotes: false,
   error: null,
-  recipes:[
-    {
-      id:0,
-      title:"PBJ",
-      source:"Mother",
-      ingredients:["bread", "peanut butter", "jam"],
-      instructions: "1. Get bread. 2. Get peanut butter and jam. 3. Put together.",
-      category:["snack", "dinner", "vegetarian", "sandwich"],
-      user_id:1
-  }, 
-  {
-      id:1,
-      title:"Peanut Butter and Banana Sandwich",
-      source:"Uncle Steve",
-      instructions: "1. Get bread. 2. Get peanut butter. 3. Slice banana. 4. Put together",
-      ingredients:["bread", "peanut butter", "banana", "chocolate"],
-      category:["snack", "dinner", "vegetarian", "sandwich"],
-      user_id:2
-  }
-  ]
- }
+  errorStatusCode: null
+};
 
+export const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case LOGIN_START:
+      return {
+        ...state,
+        loggingIn: true,
+        loggedIn: false  
+      };
+    case LOGIN_SUCCESS:
+      return {
+        ...state,
+        token: action.payload
+      };
+      case LOGOUT:
+       return {
+         user:[],
+         notes: [],
+         token: null,  
+         loggedIn: false
+       }
+       case REG_START: 
+       return {
+         ...state,
+         loggingIn: false,
+         loggedIn: false
+       }
+       
+      case REG_SUCCESS:
+      return {
+        ...state,
+        token: action.payload
+      }
+      
+    // case FETCH_DATA_START:
+    //   return {
+    //     ...state,
+    //     fetchingNotes: true,
+    //     loggedIn: true  
+    //   };
+    // case FETCH_DATA_SUCCESS:
+    //   return {
+    //     ...state,
+    //     error: "",
+    //     errorStatusCode: null,
+    //     fetchingNotes: false,
+    //     notes: action.payload
+    //   };
 
-function reducer (state = initialState , action) {
-  switch(action.type) {
-    case FETCHING_SMURFS:
-      return {
-        ...state,
-        smurfs: [],
-        fetchingSmurfs: true,
-        error: null,
-      }
-    case FETCHING_SMURFS_SUCCESSFUL:
-      return {
-        ...state,
-        smurfs: action.payload,
-        fetchingSmurfs: false,
-        error: null,
-      }
-    case FETCHING_SMURFS_FAILED:
-      return {
-        ...state,
-        smurfs: [],
-        fetchingSmurfs: false,
-        error: action.payload,
-      }
+    //   case GET_USERS_START:
+    //     return {
+    //       ...state,
+    //       gettingUsers: true
+    //     }
 
-    case ADDING_SMURF_START:
-      return {
-        ...state,
-        addingSmurf: true,
-        error: null,
-      }
-    case ADDING_SMURF_SUCCESSFUL:
-      return {
-        ...state,
-        smurfs: action.payload,
-        addingSmurf: false,
-        error: null,
-      }
-    case ADDING_SMURF_FAILED:
-      return {
-        ...state,
-        addingSmurf: false,
-        error: action.payload,
-      }
-    
-    case DELETING_SMURF_START:
-      return {
-        ...state,
-        deletingSmurf: true,
-        error: null
-      }
-    
-    case DELETING_SMURF_SUCCESSFUL:
-      return{
-        ...state,
-        smurfs: action.payload,
-        deletingSmurf: false,
-        error: null
-      }
+    //     case GET_USERS_SUCCESS:
+    //       return {
+    //         ...state,
+    //         users: action.payload 
+    //       }
 
-    case DELETING_SMURF_FAILED:
-      return {
-        ...state,
-        deletingSmurf:false,
-        error: action.payload
-      }
+    //   case ADD_START:
+    //   return {
+    //     ...state,
+    //     addingNotes: true,
+    //     loggedIn: true 
+    //   };
+  
+    //   case ADD_SUCCESS:
+    //   return {
+    //     ...state,
+    //     addingNotes: false,
+    //     error:'',
+    //     notes: [...action.payload.notes],
+    //     loggedIn: true   
+    //   };
+
+    // case DELETE_START:
+    //   return {
+    //     ...state,
+    //     deletingNotes: true,
+    //     loggedIn: true   
+    //   };
+    // case DELETE_SUCCESS:
+    //   return {
+    //     ...state,
+    //     deletingNotes: false,
+    //     error: "",
+    //     errorStatusCode: null,
+    //     notes: [...action.payload],
+    //     loggedIn: true   
+    //   };
+
+    //   case EDIT_START:
+    //     return {
+    //       ...state,
+    //       updatingNotes: true,
+    //       loggedIn: true   
+    //     }
+
+    //     case EDIT_SUCCESS:
+    //       return {
+    //         ...state,
+    //         updatingNotes: false,
+    //         notes: [...action.payload],
+    //         loggedIn: true   
+    //       }
+
+    // case USER_UNAUTHORIZED:
+    //   return {
+    //     ...state,
+    //     error: action.payload.data.error,
+    //     errorStatusCode: action.payload.status,
+    //     fetchingNotes: false,
+    //     loggedIn: false   
+    //   };
 
     default:
       return state;
   }
-}
+};
 
-export default reducer;
