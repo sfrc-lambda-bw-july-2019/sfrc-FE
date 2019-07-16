@@ -48,7 +48,7 @@ export const FETCH_RECIPES_FAILURE = 'FETCH_RECIPES_FAILURE';
 export const getRecipes = () => dispatch => {
   dispatch({ type: FETCH_RECIPES_START });
   axios
-    .get('https://secret-family-recipe-backend.herokuapp.com/api/ recipes', {
+    .get('https://secret-family-recipe-backend.herokuapp.com/api/recipes', {
       headers: { Authorization: localStorage.getItem('token') }
     })
     .then(res => {
