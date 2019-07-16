@@ -1,30 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getUsers, register } from '../actions';
+import { register } from '../actions';
 
 class Register extends React.Component {
   state = {
-    credentials: {
       username: '',
       password: ''
-    }
   };
-
-  componentDidMount() {
-    this.props.getUsers();
-  }
 
   register = e => {
     e.preventDefault();
-    this.props.register(this.state.credentials);
-    this.props.history.push('/login');
+    this.props.register(this.state);
+    this.props.history.push('/HomePage');
   };
 
   handleInput = e => {
     e.persist();
     this.setState({
-      credentials: { [e.target.name]: e.target.value }
+      [e.target.name]: e.target.value 
     });
   };
 
@@ -64,5 +58,5 @@ class Register extends React.Component {
 
 export default connect(
   null,
-  { getUsers, register }
+  {register}
 )(Register);
