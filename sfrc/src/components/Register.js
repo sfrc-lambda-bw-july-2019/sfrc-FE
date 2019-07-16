@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getUsers, register } from '../actions';
+import { register } from '../actions';
 
 class Register extends React.Component {
   state = {
@@ -11,9 +11,7 @@ class Register extends React.Component {
     }
   };
 
-  componentDidMount() {
-    this.props.getUsers();
-  }
+  
 
   register = e => {
     e.preventDefault();
@@ -64,5 +62,5 @@ class Register extends React.Component {
 
 export default connect(
   null,
-  { getUsers, register }
+  {register}
 )(Register);

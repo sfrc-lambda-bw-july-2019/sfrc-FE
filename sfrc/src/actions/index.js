@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {authenticator} from '../utils/authenticator';
 
 export const LOGIN_START = 'LOGIN_START';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -12,17 +13,19 @@ export const login = creds => dispatch => {
       creds
     )
     .then(res => {
-      console.log(res.data);
-      localStorage.setItem('token', res.data.authToken);
-      localStorage.setItem('user_id', res.data.user_id);
       dispatch({ type: LOGIN_SUCCESS });
-      console.log(res);
+      console.log(res.data);
+      localStorage.setItem('token', res.data.token);
+      //localStorage.setItem('user_id', res.data.user_id);
+      return true;
     })
-    .catch(err => console.log(err));
+    .catch(err => {dispatch({type:LOGIN_FAILURE, payload:err})
+  console.log(localStorage.token)});
 };
 
 export const REG_START = 'REG_START';
 export const REG_SUCCESS = 'REG_SUCCESS';
+export const REG_FAILURE = 'REG_ERROR'
 
 export const register = user => dispatch => {
   dispatch({ type: REG_START });
@@ -33,25 +36,8 @@ export const register = user => dispatch => {
     )
     .then(res => {
       dispatch({ type: REG_SUCCESS });
-      dispatch(getUsers());
     })
-    .catch(err => console.log(err));
-};
-
-export const FETCH_USERS_START = 'FETCH_USERS_START';
-export const FETCH_USERS_SUCCESS = 'FETCH_USERS_SUCCESS';
-export const FETCH_USERS_FAILURE = 'FETCH_USERS_FAILURE';
-
-export const getUsers = () => dispatch => {
-  dispatch({ type: FETCH_USERS_START });
-  axios
-    .get('https://secret-family-recipe-backend.herokuapp.com/api/users', {
-      headers: { Authorization: localStorage.getItem('token') }
-    })
-    .then(res => {
-      dispatch({ type: FETCH_USERS_SUCCESS, payload: res.data });
-    })
-    .catch(err => console.log(err));
+    .catch(err => dispatch({type:REG_FAILURE, payload:err}));
 };
 
 export const FETCH_RECIPES_START = 'FETCH_RECIPES_START';

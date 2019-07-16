@@ -29,8 +29,8 @@ class App extends React.Component {
         <h1 className="app-title">Secret Family Recipes Cookbook</h1>
         <Router>
           <TopNavBar>
-            <Link className="top-nav-link" to='/login'>Login</Link>
-            <Link className="top-nav-link" to='/register'>Sign Up</Link>
+            <NavLink className="top-nav-link" to='/login'>Login</NavLink>
+            <NavLink className="top-nav-link" to='/register'>Sign Up</NavLink>
           </TopNavBar>
           <Route exact path='/login' component={Login} />
           <Route exact path='/register' component={Register} />
