@@ -60,8 +60,15 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         loggingIn: false,
-        token: action.payload
+        error: action.payload
       };
+
+    case LOGIN_FAILURE:
+      return {
+        ...state,
+        loggingIn:false,
+        error:action.payload
+      }
 
 
     case REG_START:

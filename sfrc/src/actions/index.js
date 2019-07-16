@@ -13,10 +13,9 @@ export const login = creds => dispatch => {
       creds
     )
     .then(res => {
-      dispatch({ type: LOGIN_SUCCESS });
-      console.log(res.data);
-      localStorage.setItem('token', res.data.token);
-      //localStorage.setItem('user_id', res.data.user_id);
+      localStorage.setItem('token', res.data.payload);
+      dispatch({ type: LOGIN_SUCCESS, payload: res.data.payload});
+    
       return true;
     })
     .catch(err => {dispatch({type:LOGIN_FAILURE, payload:err})
@@ -53,7 +52,7 @@ export const getRecipes = () => dispatch => {
     .then(res => {
       dispatch({ type: FETCH_RECIPES_SUCCESS, payload: res.data });
     })
-    .catch(err => console.log(err));
+    .catch(err => dispatch({type:FETCH_RECIPES_FAILURE, payload:err}));
 };
 
 export const LOGOUT = 'LOGOUT';
