@@ -1,20 +1,15 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logout } from '../actions';
+import { logout, getRecipes} from '../actions';
+//import RecipeList from './RecipeList';
 
 class HomePage extends React.Component {
   componentDidMount() {
-    if (localStorage.getItem('user.id')) {
-      const user_id = parseInt(localStorage.getItem('userid'));
-      this.props.getData(user_id);
-    }
+    this.props.getRecipes();
   }
 
-  routeToRecipes = e => {
-    e.preventDefault();
-    this.props.history.push('/recipelist');
-  };
+
 
   logoutButton = e => {
     e.preventDefault();
@@ -26,21 +21,21 @@ class HomePage extends React.Component {
     return (
       <div>
         <h1>Find a Family Recipe</h1>
-        <button onClick={this.routeToRecipes}>Find Recipes</button>
         <button onClick={this.logoutButton}>Logout</button>
+        {this.props.fetchingRecipes ? <p>Wait a minute...</p> : this.props.recipes.map(recipe => <p>{recipe.ingredients}</p>)}
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  // recipes: state.recipes,
-  fetchingUsers: state.fetchingUsers
+  recipes: state.recipes,
+  fetchingRecipes: state.fetchingRecipes
 });
 
 export default withRouter(
   connect(
     mapStateToProps,
-    { logout }
+    { logout,getRecipes }
   )(HomePage)
 );

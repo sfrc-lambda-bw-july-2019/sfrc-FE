@@ -30,10 +30,6 @@ class RecipeList extends React.Componet {
       searchField: ''
     };
   }
-  // routeToRecipes(e, user) {
-  //   e.preventDefault();
-  //   props.history.push(`/recipielist/${user.id}`);
-  // }
   
   render() {
     return (

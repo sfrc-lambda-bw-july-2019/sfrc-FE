@@ -8,10 +8,10 @@ import {
   LOGIN_FAILURE,
   REG_START,
   REG_SUCCESS,
-  REG_FAILURE
-  // FETCH_RECIPES_START,
-  // FETCH_RECIPES_SUCCESS,
-  // FETCH_RECIPES_FAILURE
+  REG_FAILURE,
+  FETCH_RECIPES_START,
+  FETCH_RECIPES_SUCCESS,
+  FETCH_RECIPES_FAILURE
 } from '../actions';
 
 const initialState = {
@@ -19,10 +19,11 @@ const initialState = {
   logginIn: false,
   error: '',
   errorStatusCode: null,
-  fetchingUsers: false,
+  fetchingRecipes: false,
   token: localStorage.getItem('token'),
   success: false,
-  registerUser: false
+  registerUser: false,
+  recipes:[]
 
   // recipes: [
   //   {
@@ -35,18 +36,7 @@ const initialState = {
   //     category: "snack dinner vegetarian sandwich"
   //     user_id: 1
   //   },
-  
-  //   {
-  //     id: 1,
-  //     title: 'Peanut Butter and Banana Sandwich',
-  //     source: 'Uncle Steve',
-  //     instructions:
-  //       '1. Get bread. 2. Get peanut butter. 3. Slice banana. 4. Put together',
-  //     ingredients: ['bread', 'peanut butter', 'banana', 'chocolate'],
-  //     category: ['snack', 'dinner', 'vegetarian', 'sandwich'],
-  //     user_id: 2
-  //   }
-  // ]
+ 
 };
 
 function reducer(state = initialState, action) {
@@ -92,6 +82,26 @@ function reducer(state = initialState, action) {
         registerUser:false,
         error: action.payload
       }
+
+    case FETCH_RECIPES_START:
+      return {
+        ...state,
+        fetchingRecipes:true,
+      }
+    
+    case FETCH_RECIPES_SUCCESS: 
+      return {
+        ...state,
+        fetchingRecipes:false,
+        recipes: action.payload
+      }
+    
+    case FETCH_RECIPES_FAILURE:
+        return {
+          ...state,
+          fetchingRecipes:false,
+          error: action.payload
+        }
 
     default:
       return state;
