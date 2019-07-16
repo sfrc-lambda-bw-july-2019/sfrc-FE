@@ -15,7 +15,6 @@ export const login = creds => dispatch => {
     .then(res => {
       localStorage.setItem('token', res.data.payload);
       dispatch({ type: LOGIN_SUCCESS, payload: res.data.payload});
-    
       return true;
     })
     .catch(err => {dispatch({type:LOGIN_FAILURE, payload:err})
@@ -26,14 +25,17 @@ export const REG_START = 'REG_START';
 export const REG_SUCCESS = 'REG_SUCCESS';
 export const REG_FAILURE = 'REG_ERROR'
 
-export const register = user => dispatch => {
+export const register = credentials => dispatch => {
+  //const creds = { username: credentials.username, password: credentials.password };
   dispatch({ type: REG_START });
   axios
     .post(
       'https://secret-family-recipe-backend.herokuapp.com/api/auth/register',
-      user
+      credentials
     )
     .then(res => {
+      localStorage.setItem('token', res.data.payload);
+
       dispatch({ type: REG_SUCCESS });
     })
     .catch(err => dispatch({type:REG_FAILURE, payload:err}));

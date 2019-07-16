@@ -29,12 +29,13 @@ const initialState = {
   //     id: 0,
   //     title: 'PBJ',
   //     source: 'Mother',
-  //     ingredients: ['bread', 'peanut butter', 'jam'],
+  //     ingredients: "bread peanut butter jam
   //     instructions:
   //       '1. Get bread. 2. Get peanut butter and jam. 3. Put together.',
-  //     category: ['snack', 'dinner', 'vegetarian', 'sandwich'],
+  //     category: "snack dinner vegetarian sandwich"
   //     user_id: 1
   //   },
+  
   //   {
   //     id: 1,
   //     title: 'Peanut Butter and Banana Sandwich',
