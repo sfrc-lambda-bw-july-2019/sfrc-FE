@@ -13,7 +13,7 @@ class HomePage extends React.Component {
 
   routeToRecipes = e => {
     e.preventDefault();
-    this.props.history.push('/recipelist');
+    this.props.history.push('/recipeform');
   };
 
   logoutButton = e => {
@@ -26,7 +26,7 @@ class HomePage extends React.Component {
     return (
       <div>
         <h1>Find a Family Recipe</h1>
-        <button onClick={this.routeToRecipes}>Find Recipes</button>
+        <button onClick={this.routeToRecipes}>Make Recipes</button>
         <button onClick={this.logoutButton}>Logout</button>
       </div>
     );
