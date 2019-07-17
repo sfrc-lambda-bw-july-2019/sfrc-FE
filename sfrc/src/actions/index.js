@@ -57,6 +57,44 @@ export const getRecipes = () => dispatch => {
     .catch(err => dispatch({type:FETCH_RECIPES_FAILURE, payload:err}));
 };
 
+export const DELETE_RECIPE_START = 'DELETE_RECIPE_START';
+export const DELETE_RECIPE_SUCCESS = 'DELETE_RECIPE_SUCCESS';
+export const DELETE_RECIPE_FAILURE = 'DELETE_RECIPE_FAILURE';
+
+//DELETE ENDPOINT DOES NOT EXIST YET, JULY 16 2019
+export const deleteRecipe = id => dispatch => {
+  dispatch({ type: DELETE_RECIPE_START});
+  axios
+    .delete(`${id}`, { //PUT IN A WORKING ENDPOINT!!!!!
+      headers: { Authorization: localStorage.getItem('token') }
+    })
+    .then(res => {
+      dispatch({ type: DELETE_RECIPE_SUCCESS, payload: res.data });
+    })
+    .catch(err => dispatch({type: DELETE_RECIPE_FAILURE, payload:err}));
+};
+
+
+export const ADD_RECIPE_START = 'ADD_RECIPE_START';
+export const ADD_RECIPE_SUCCESS = 'ADD_RECIPE_SUCCESS';
+export const ADD_RECIPE_FAILURE = 'ADD_RECIPE_FAILURE';
+
+export const addRecipe = recipe => dispatch => {
+  dispatch({ type: ADD_RECIPE_START});
+  axios
+    .post('https://secret-family-recipe-backend.herokuapp.com/api/recipes', recipe)
+    .then(res => {
+      dispatch({ type: ADD_RECIPE_SUCCESS, payload: res.data });
+    })
+    .catch(err => dispatch({type: ADD_RECIPE_FAILURE, payload:err}));
+};
+
+export const UPDATE_RECIPE_START = "UPDATE_RECIPE_START";
+export const UPDATE_RECIPE_SUCCESS = "UPDATE_RECIPE_SUCCESS";
+export const UPDATE_RECIPE_FAILURE = "UPDATE_RECIPE_FAILURE";
+//UPDATE ENDPOINT DOES NOT YET EXIST, JULY 16 2019
+
+
 export const LOGOUT = 'LOGOUT';
 
 export const logout = () => dispatch => {
