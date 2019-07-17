@@ -65,7 +65,7 @@ export const DELETE_RECIPE_FAILURE = 'DELETE_RECIPE_FAILURE';
 export const deleteRecipe = id => dispatch => {
   dispatch({ type: DELETE_RECIPE_START});
   axios
-    .delete(`${id}`, { //PUT IN A WORKING ENDPOINT!!!!!
+    .delete(`https://secret-family-recipe-backend.herokuapp.com/api/recipes/${id}`, { 
       headers: { Authorization: localStorage.getItem('token') }
     })
     .then(res => {

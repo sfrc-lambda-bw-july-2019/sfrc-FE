@@ -5,6 +5,7 @@ class RecipeForm extends Component {
     constructor(props) {
       super(props);
       this.state = {
+       
         title: '',
         source: '',
         ingredients: '',
@@ -15,14 +16,21 @@ class RecipeForm extends Component {
   
     addRecipe = event => {
       event.preventDefault();
-      this.props.addRecipe(this.state);
+      const newRecipe = {
+        title: this.state.title,
+        source: this.state.source,
+        ingredients: this.state.ingredients,
+        instructions:this.state.instructions,
+        category: this.state.category
+      }
+      this.props.addRecipe(newRecipe);
       this.setState({
         title: '',
         source: '',
         ingredients: '',
         instructions:'',
-        category:''
-      });
+        category:''}
+      );
     
     }
   

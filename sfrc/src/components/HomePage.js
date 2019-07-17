@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logout, getRecipes, addRecipe} from '../actions';
+import { logout, getRecipes, addRecipe, deleteRecipe} from '../actions';
 import RecipeList from './RecipeList';
 import RecipeForm from './RecipeForm';
 
@@ -12,6 +12,10 @@ class HomePage extends React.Component {
 
   addRecipe = recipe => {
     this.props.addRecipe(recipe);
+  }
+
+  deleteRecipe = id => {
+    this.props.deleteRecipe(id)
   }
 
   logoutButton = e => {
@@ -25,7 +29,7 @@ class HomePage extends React.Component {
       <div>
         <h1>Find a Family Recipe</h1>
         <button onClick={this.logoutButton}>Logout</button>
-        {this.props.fetchingRecipes ? <p>Wait a minute...</p> : <RecipeList />}
+        {this.props.fetchingRecipes ? <p>Wait a minute...</p> : <RecipeList deleteRecipe={this.deleteRecipe}/>}
         <RecipeForm addRecipe = {this.addRecipe}/>
       </div>
     );
@@ -43,6 +47,6 @@ const mapStateToProps = state => ({
 export default withRouter(
   connect(
     mapStateToProps,
-    { logout,getRecipes, addRecipe }
+    { logout,getRecipes, addRecipe, deleteRecipe }
   )(HomePage)
 );
