@@ -2,7 +2,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
-import SignUp from "./components/SignUp";
+// import SignUp from "./components/SignUp";
 import Login from './components/Login'
 import MainPage from "./components/MainPage";
 import Recipe from "./components/Recipe";
@@ -17,9 +17,9 @@ import { connect } from 'react-redux';
           <div className="nav-links">
           <a className="home-link" href="https://blackhole-chaz-landing.netlify.com/" target='_blank' rel="noopener noreferrer">blackh0le</a>
           <div className={this.props.loggedIn ? 'none': 'displayed'}>
-            <NavLink exact to="/">
+            {/* <NavLink exact to="/">
               SignUp
-            </NavLink>
+            </NavLink> */}
             <NavLink to="/login">Login</NavLink>
           </div>
           <div className={this.props.loggedIn ? 'displayed': 'none'}>
@@ -30,7 +30,7 @@ import { connect } from 'react-redux';
           </div>
         </nav>
         <div>
-          <Route exact path="/" component={SignUp} />
+          {/* <Route exact path="/" component={SignUp} /> */}
           <Route path="/login" component={Login} />
           <PrivateRoute exact path="/main-page" component={MainPage} />
           <Route path="/notes/:id" component={Recipe} />
