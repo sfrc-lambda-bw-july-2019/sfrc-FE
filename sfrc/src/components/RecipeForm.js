@@ -10,7 +10,8 @@ class RecipeForm extends Component {
         source: '',
         ingredients: '',
         instructions:'',
-        category:''
+        category:'',
+        user_id: parseInt(localStorage.getItem("user_id"))
       };
     }
   
@@ -21,7 +22,8 @@ class RecipeForm extends Component {
         source: this.state.source,
         ingredients: this.state.ingredients,
         instructions:this.state.instructions,
-        category: this.state.category
+        category: this.state.category,
+        user_id: this.state.user_id
       }
       this.props.addRecipe(newRecipe);
       this.setState({
