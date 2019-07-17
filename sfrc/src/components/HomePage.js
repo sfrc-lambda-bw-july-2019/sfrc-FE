@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout, getRecipes} from '../actions';
-//import RecipeList from './RecipeList';
+import RecipeList from './RecipeList';
 
 class HomePage extends React.Component {
   componentDidMount() {
@@ -22,7 +22,7 @@ class HomePage extends React.Component {
       <div>
         <h1>Find a Family Recipe</h1>
         <button onClick={this.logoutButton}>Logout</button>
-        {this.props.fetchingRecipes ? <p>Wait a minute...</p> : this.props.recipes.map(recipe => <p>{recipe.ingredients}</p>)}
+        {this.props.fetchingRecipes ? <p>Wait a minute...</p> : <RecipeList />}
       </div>
     );
   }
