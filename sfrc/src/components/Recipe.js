@@ -9,7 +9,7 @@ const Recipe = props =>{
             <p>{props.recipe.instructions}</p>
             <p>{props.recipe.category}</p>
             <button onClick = {() => props.deleteRecipe(props.recipe.id)}> Delete Recipe</button>
-            <button>Update Recipe</button>
+            <button onClick={()=>props.selectRecipe(props.recipe)}>Update Recipe</button>
         </div>
     )
 }

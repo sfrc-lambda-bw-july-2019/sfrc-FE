@@ -17,7 +17,8 @@ import {
   DELETE_RECIPE_FAILURE,
   ADD_RECIPE_START,
   ADD_RECIPE_SUCCESS,
-  ADD_RECIPE_FAILURE
+  ADD_RECIPE_FAILURE,
+  SELECT_RECIPE_START
   
 } from '../actions';
 
@@ -33,7 +34,8 @@ const initialState = {
   token: localStorage.getItem('token'),
   success: false,
   registerUser: false,
-  recipes:[]
+  recipes:[],
+  selectedRecipe:null
 };
 
 function reducer(state = initialState, action) {
@@ -115,6 +117,8 @@ function reducer(state = initialState, action) {
             addingRecipe:false,
             error: action.payload
         }
+    
+    
 
     
     case DELETE_RECIPE_START:
@@ -134,7 +138,13 @@ function reducer(state = initialState, action) {
             deletingRecipe:false,
             error: action.payload
         }
-
+    
+    case SELECT_RECIPE_START:
+        return {
+          ...state,
+          selectedRecipe: action.payload
+        }
+      
 
     default:
       return state;

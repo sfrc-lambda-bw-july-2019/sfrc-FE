@@ -1,7 +1,6 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logout, getRecipes, addRecipe, deleteRecipe} from '../actions';
+import { logout, getRecipes, addRecipe, deleteRecipe, selectRecipe} from '../actions';
 import RecipeList from './RecipeList';
 import RecipeForm from './RecipeForm';
 
@@ -21,6 +20,10 @@ class HomePage extends React.Component {
     this.props.getRecipes();
   }
 
+  selectRecipe = recipe =>{
+    this.props.selectRecipe(recipe);
+  }
+
   logoutButton = e => {
     e.preventDefault();
     this.props.logout();
@@ -32,7 +35,7 @@ class HomePage extends React.Component {
       <div>
         <h1>Find a Family Recipe</h1>
         <button onClick={this.logoutButton}>Logout</button>
-        {this.props.fetchingRecipes ? <p>Wait a minute...</p> : <RecipeList deleteRecipe={this.deleteRecipe}/>}
+        {this.props.fetchingRecipes ? <p>Wait a minute...</p> : <RecipeList deleteRecipe={this.deleteRecipe} selectRecipe={this.selectRecipe}/>}
         <RecipeForm addRecipe = {this.addRecipe}/>
       </div>
     );
@@ -50,7 +53,7 @@ const mapStateToProps = state => ({
 export default
   connect(
     mapStateToProps,
-    { logout,getRecipes, addRecipe, deleteRecipe }
+    { logout,getRecipes, addRecipe, deleteRecipe, selectRecipe}
   )(HomePage);
 
 /*
