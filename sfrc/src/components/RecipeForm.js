@@ -11,7 +11,7 @@ class RecipeForm extends Component {
         ingredients: '',
         instructions:'',
         category:'',
-        user_id: parseInt(localStorage.getItem("user_id"))
+        user_id: localStorage.getItem("user_id")
       };
     }
   

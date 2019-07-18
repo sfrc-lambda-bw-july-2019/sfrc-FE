@@ -48,7 +48,7 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         loggingIn: false,
-        error: action.payload
+        token: action.payload
       };
 
     case LOGIN_FAILURE:
@@ -126,7 +126,7 @@ function reducer(state = initialState, action) {
         return {
           ...state,
           deletingRecipe:false,
-          recipes: action.payload
+          //recipes: [...action.payload]
         }
     case DELETE_RECIPE_FAILURE:
         return {

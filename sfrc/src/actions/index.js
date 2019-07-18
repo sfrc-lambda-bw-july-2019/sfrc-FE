@@ -13,9 +13,10 @@ export const login = creds => dispatch => {
       creds
     )
     .then(res => {
-      localStorage.setItem('token', res.data.payload);
+      console.log(res.data)
+      localStorage.setItem('token', res.data.authToken);
       localStorage.setItem("user_id", res.data.user.id);
-      dispatch({ type: LOGIN_SUCCESS, payload: res.data.payload});
+      dispatch({ type: LOGIN_SUCCESS, payload: res.data});
       return true;
     })
     .catch(err => {dispatch({type:LOGIN_FAILURE, payload:err})
@@ -27,7 +28,6 @@ export const REG_SUCCESS = 'REG_SUCCESS';
 export const REG_FAILURE = 'REG_ERROR'
 
 export const register = credentials => dispatch => {
-  //const creds = { username: credentials.username, password: credentials.password };
   dispatch({ type: REG_START });
   axios
     .post(
@@ -35,7 +35,8 @@ export const register = credentials => dispatch => {
       credentials
     )
     .then(res => {
-      localStorage.setItem('token', res.data.payload);
+      localStorage.setItem('token', res.data.authToken);
+      localStorage.setItem("user_id", res.data.user.id);
 
       dispatch({ type: REG_SUCCESS });
     })
@@ -62,7 +63,6 @@ export const DELETE_RECIPE_START = 'DELETE_RECIPE_START';
 export const DELETE_RECIPE_SUCCESS = 'DELETE_RECIPE_SUCCESS';
 export const DELETE_RECIPE_FAILURE = 'DELETE_RECIPE_FAILURE';
 
-//DELETE ENDPOINT DOES NOT EXIST YET, JULY 16 2019
 export const deleteRecipe = id => dispatch => {
   dispatch({ type: DELETE_RECIPE_START});
   axios

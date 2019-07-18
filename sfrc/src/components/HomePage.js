@@ -12,10 +12,13 @@ class HomePage extends React.Component {
 
   addRecipe = recipe => {
     this.props.addRecipe(recipe);
+    this.props.getRecipes();
   }
 
   deleteRecipe = id => {
-    this.props.deleteRecipe(id)
+    this.props.deleteRecipe(id);
+    //window.location.reload();
+    this.props.getRecipes();
   }
 
   logoutButton = e => {
@@ -44,9 +47,18 @@ const mapStateToProps = state => ({
   updatingRecipe: state.updatingRecipe
 });
 
+export default
+  connect(
+    mapStateToProps,
+    { logout,getRecipes, addRecipe, deleteRecipe }
+  )(HomePage);
+
+/*
 export default withRouter(
   connect(
     mapStateToProps,
     { logout,getRecipes, addRecipe, deleteRecipe }
   )(HomePage)
 );
+
+*/ 
