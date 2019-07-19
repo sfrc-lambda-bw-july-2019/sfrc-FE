@@ -1,7 +1,3 @@
-/*
-  Please de-smurfify this and actions
-*/
-
 import {
   LOGIN_START,
   LOGIN_SUCCESS,
@@ -21,7 +17,8 @@ import {
   SELECT_RECIPE_START,
   UPDATE_RECIPE_START,
   UPDATE_RECIPE_SUCCESS,
-  UPDATE_RECIPE_FAILURE
+  UPDATE_RECIPE_FAILURE,
+  SEARCH_STARTED
 } from '../actions';
 
 const initialState = {
@@ -38,7 +35,7 @@ const initialState = {
   registerUser: false,
   recipes:[],
   selectedRecipe:null,
-  filteredRecipes:[]
+  filteredRecipes:['not empty', 'not empty']
 };
 
 function reducer(state = initialState, action) {
@@ -167,6 +164,12 @@ function reducer(state = initialState, action) {
           ...state,
           selectedRecipe: action.payload
         }
+    
+    case SEARCH_STARTED:
+      return {
+        ...state,
+        filteredRecipes: action.payload
+      }
       
 
     default:

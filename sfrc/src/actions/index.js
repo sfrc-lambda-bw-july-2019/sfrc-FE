@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {authenticator} from '../utils/authenticator';
+//import {authenticator} from '../utils/authenticator';
 
 export const LOGIN_START = 'LOGIN_START';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -95,7 +95,6 @@ export const UPDATE_RECIPE_START = "UPDATE_RECIPE_START";
 export const UPDATE_RECIPE_SUCCESS = "UPDATE_RECIPE_SUCCESS";
 export const UPDATE_RECIPE_FAILURE = "UPDATE_RECIPE_FAILURE";
 
-
 export const updateRecipe = recipe => dispatch => {
   dispatch({ type: UPDATE_RECIPE_START });
   axios
@@ -108,6 +107,13 @@ export const updateRecipe = recipe => dispatch => {
     .catch(err => dispatch({type: UPDATE_RECIPE_FAILURE, payload:err}));
 };
 
+export const SEARCH_STARTED = "SEARCH_STARTED";
+
+export const search = param => dispatch => {
+  dispatch({type:SEARCH_STARTED, payload: param})
+  console.log("SEARCH Param changed");
+  console.log(param);
+}
 
 export const SELECT_RECIPE_START = "SELECT_RECIPE_START";
 export const SELECT_RECIPE_SUCCESS = "SELECT_RECIPE_SUCCESS";
