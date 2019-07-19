@@ -8,7 +8,7 @@ class RecipeList extends React.Component {
     return (
       <div>
         {this.props.recipes.map(recipe => (
-          <Recipe recipe = {recipe} key={recipe.id} deleteRecipe ={this.props.deleteRecipe}/> 
+          <Recipe recipe = {recipe} key={recipe.id} deleteRecipe={this.props.deleteRecipe} selectRecipe={this.props.selectRecipe}/> 
         ))}
       </div>
     );

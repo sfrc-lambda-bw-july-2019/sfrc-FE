@@ -13,8 +13,10 @@ export const login = creds => dispatch => {
       creds
     )
     .then(res => {
-      localStorage.setItem('token', res.data.payload);
-      dispatch({ type: LOGIN_SUCCESS, payload: res.data.payload});
+      console.log(res.data)
+      localStorage.setItem('token', res.data.authToken);
+      localStorage.setItem("user_id", res.data.user.id);
+      dispatch({ type: LOGIN_SUCCESS, payload: res.data});
       return true;
     })
     .catch(err => {dispatch({type:LOGIN_FAILURE, payload:err})
@@ -26,7 +28,6 @@ export const REG_SUCCESS = 'REG_SUCCESS';
 export const REG_FAILURE = 'REG_ERROR'
 
 export const register = credentials => dispatch => {
-  //const creds = { username: credentials.username, password: credentials.password };
   dispatch({ type: REG_START });
   axios
     .post(
@@ -34,7 +35,8 @@ export const register = credentials => dispatch => {
       credentials
     )
     .then(res => {
-      localStorage.setItem('token', res.data.payload);
+      localStorage.setItem('token', res.data.authToken);
+      localStorage.setItem("user_id", res.data.user.id);
 
       dispatch({ type: REG_SUCCESS });
     })
@@ -61,7 +63,6 @@ export const DELETE_RECIPE_START = 'DELETE_RECIPE_START';
 export const DELETE_RECIPE_SUCCESS = 'DELETE_RECIPE_SUCCESS';
 export const DELETE_RECIPE_FAILURE = 'DELETE_RECIPE_FAILURE';
 
-//DELETE ENDPOINT DOES NOT EXIST YET, JULY 16 2019
 export const deleteRecipe = id => dispatch => {
   dispatch({ type: DELETE_RECIPE_START});
   axios
@@ -89,10 +90,33 @@ export const addRecipe = recipe => dispatch => {
     .catch(err => dispatch({type: ADD_RECIPE_FAILURE, payload:err}));
 };
 
+
 export const UPDATE_RECIPE_START = "UPDATE_RECIPE_START";
 export const UPDATE_RECIPE_SUCCESS = "UPDATE_RECIPE_SUCCESS";
 export const UPDATE_RECIPE_FAILURE = "UPDATE_RECIPE_FAILURE";
-//UPDATE ENDPOINT DOES NOT YET EXIST, JULY 16 2019
+
+
+export const updateRecipe = recipe => dispatch => {
+  dispatch({ type: UPDATE_RECIPE_START });
+  axios
+    .put(`https://secret-family-recipe-backend.herokuapp.com/api/recipes/${recipe.id}`, recipe, {
+      headers: { Authorization: localStorage.getItem("token") }
+    })
+    .then(res => {
+      dispatch({ type: UPDATE_RECIPE_SUCCESS, payload: res.data });
+    })
+    .catch(err => dispatch({type: UPDATE_RECIPE_FAILURE, payload:err}));
+};
+
+
+export const SELECT_RECIPE_START = "SELECT_RECIPE_START";
+export const SELECT_RECIPE_SUCCESS = "SELECT_RECIPE_SUCCESS";
+export const SELECT_RECIPE_FAILURE = "SELECT_RECIPE_FAILURE";
+
+export const selectRecipe = recipe => dispatch => {
+  dispatch({type:SELECT_RECIPE_START,payload: recipe})
+  console.log("THIS IS MY RECIPE:", recipe)
+}
 
 
 export const LOGOUT = 'LOGOUT';
