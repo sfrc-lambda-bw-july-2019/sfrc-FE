@@ -38,7 +38,7 @@ const initialState = {
   registerUser: false,
   recipes:[],
   selectedRecipe:null,
-  filteredRecipes:null
+  filteredRecipes:[]
 };
 
 function reducer(state = initialState, action) {
