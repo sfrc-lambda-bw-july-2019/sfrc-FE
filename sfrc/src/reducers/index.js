@@ -37,7 +37,8 @@ const initialState = {
   success: false,
   registerUser: false,
   recipes:[],
-  selectedRecipe:null
+  selectedRecipe:null,
+  filteredRecipes:null
 };
 
 function reducer(state = initialState, action) {
@@ -176,7 +177,7 @@ function reducer(state = initialState, action) {
 export default reducer;
 
 
-
+  //For Reference here is what a recipe should look like. 
   // recipes: [
   //   {
   //     id: 0,
