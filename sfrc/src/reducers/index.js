@@ -18,8 +18,10 @@ import {
   ADD_RECIPE_START,
   ADD_RECIPE_SUCCESS,
   ADD_RECIPE_FAILURE,
-  SELECT_RECIPE_START
-  
+  SELECT_RECIPE_START,
+  UPDATE_RECIPE_START,
+  UPDATE_RECIPE_SUCCESS,
+  UPDATE_RECIPE_FAILURE
 } from '../actions';
 
 const initialState = {
@@ -118,6 +120,26 @@ function reducer(state = initialState, action) {
             error: action.payload
         }
     
+    case UPDATE_RECIPE_START:
+        return {
+          ...state,
+          updatingRecipe: true,
+        }
+        
+    case UPDATE_RECIPE_SUCCESS:
+        return {
+          ...state,
+          updatingRecipe: false,
+          selectedRecipe:null
+        }
+    
+    case UPDATE_RECIPE_FAILURE:
+        return {
+          ...state,
+          updatingRecipe: false,
+          selectedRecipe: null,
+          error: action.payload
+        }
     
 
     

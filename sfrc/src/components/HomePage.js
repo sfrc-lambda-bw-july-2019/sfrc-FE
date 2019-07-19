@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { logout, getRecipes, addRecipe, deleteRecipe, selectRecipe} from '../actions';
+import { logout, getRecipes, addRecipe, deleteRecipe, selectRecipe, updateRecipe} from '../actions';
 import RecipeList from './RecipeList';
 import RecipeForm from './RecipeForm';
 
@@ -24,6 +24,11 @@ class HomePage extends React.Component {
     this.props.selectRecipe(recipe);
   }
 
+  updateRecipe = recipe => {
+    this.props.updateRecipe(recipe);
+    this.props.getRecipes();
+  }
+
   logoutButton = e => {
     e.preventDefault();
     this.props.logout();
@@ -36,7 +41,7 @@ class HomePage extends React.Component {
         <h1>Find a Family Recipe</h1>
         <button onClick={this.logoutButton}>Logout</button>
         {this.props.fetchingRecipes ? <p>Wait a minute...</p> : <RecipeList deleteRecipe={this.deleteRecipe} selectRecipe={this.selectRecipe}/>}
-        <RecipeForm addRecipe = {this.addRecipe}/>
+        <RecipeForm addRecipe = {this.addRecipe} selectedRecipe={this.props.selectedRecipe} updateRecipe={this.updateRecipe}/>
       </div>
     );
   }
@@ -47,13 +52,14 @@ const mapStateToProps = state => ({
   fetchingRecipes: state.fetchingRecipes,
   addingRecipe: state.addingRecipe,
   deletingRecipe: state.deletingRecipe,
-  updatingRecipe: state.updatingRecipe
+  updatingRecipe: state.updatingRecipe,
+  selectedRecipe: state.selectedRecipe
 });
 
 export default
   connect(
     mapStateToProps,
-    { logout,getRecipes, addRecipe, deleteRecipe, selectRecipe}
+    { logout,getRecipes, addRecipe, deleteRecipe, selectRecipe, updateRecipe}
   )(HomePage);
 
 /*

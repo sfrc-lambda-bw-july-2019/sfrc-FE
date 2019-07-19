@@ -4,77 +4,107 @@ import React, {Component} from 'react';
 class RecipeForm extends Component {
     constructor(props) {
       super(props);
+
       this.state = {
-       
-        title: '',
-        source: '',
-        ingredients: '',
-        instructions:'',
-        category:'',
-        user_id: localStorage.getItem("user_id")
+        recipe: this.props.selectedRecipe || {
+          title: '',
+          source: '',
+          ingredients: '',
+          instructions:'',
+          category:'',
+          user_id: localStorage.getItem("user_id")
+        }
+         
       };
+      //}
+    }
+
+    componentDidUpdate(prevProps) {
+      if (
+        this.props.selectedRecipe &&
+        prevProps.selectedRecipe != this.props.selectedRecipe
+      ) {
+        this.setState({
+          recipe:this.props.selectedRecipe
+        });
+      }
     }
   
-    addRecipe = event => {
+    submitRecipe = event => {
       event.preventDefault();
       const newRecipe = {
-        title: this.state.title,
-        source: this.state.source,
-        ingredients: this.state.ingredients,
-        instructions:this.state.instructions,
-        category: this.state.category,
-        user_id: this.state.user_id
+        title: this.state.recipe.title,
+        source: this.state.recipe.source,
+        ingredients: this.state.recipe.ingredients,
+        instructions:this.state.recipe.instructions,
+        category: this.state.recipe.category,
+        user_id: this.state.recipe.user_id
       }
-      this.props.addRecipe(newRecipe);
+      if (this.props.selectedRecipe){
+        this.props.updateRecipe(this.state.recipe)
+      } else{
+        this.props.addRecipe(newRecipe);
+      }
+      
       this.setState({
-        title: '',
-        source: '',
-        ingredients: '',
-        instructions:'',
-        category:''}
+        recipe:{
+          title: '',
+          source: '',
+          ingredients: '',
+          instructions:'',
+          category:'',
+          user_id: localStorage.getItem("user_id")
+        }
+        }
       );
     
     }
   
     handleInputChange = e => {
-      this.setState({ [e.target.name]: e.target.value });
+      e.persist();
+      this.setState(prevState =>({
+        recipe: {
+          ...prevState.recipe, 
+          [e.target.name]: e.target.value 
+        }
+      }));
     };
   
     render() {
       return (
         <div>
-          <form  onSubmit={this.addRecipe}>
+          <form  onSubmit={this.submitRecipe}>
             <input
               onChange={this.handleInputChange}
               placeholder="title"
-              value={this.state.title}
+              value={this.state.recipe.title}
               name="title"
             />
             <input
               onChange={this.handleInputChange}
               placeholder="source"
-              value={this.state.source}
+              value={this.state.recipe.source}
               name="source"
             />
             <input
               onChange={this.handleInputChange}
               placeholder="ingredients"
-              value={this.state.ingredients}
+              value={this.state.recipe.ingredients}
               name="ingredients"
             />
             <input
               onChange={this.handleInputChange}
               placeholder="instructions"
-              value={this.state.instructions}
+              value={this.state.recipe.instructions}
               name="instructions"
             />
             <input
               onChange={this.handleInputChange}
               placeholder="category"
-              value={this.state.category}
+              value={this.state.recipe.category}
               name="category"
             />
-            <button type="submit">Add Recipe to the Secret Cookbook!!!</button>
+            <button type="submit">{this.props.selectedRecipe ? "Update Recipe":"Add Recipe to the Secret Cookbook!!!"}</button>
           </form>
         </div>
       );
@@ -82,3 +112,16 @@ class RecipeForm extends Component {
   }
   
   export default RecipeForm;
+
+
+        // if(this.props.selectedRecipe){
+      //   this.state = {
+      //     title: this.props.selectedRecipe.title,
+      //     source: this.props.selectedRecipe.source,
+      //     ingredients: this.props.selectedRecipe.ingredients,
+      //     instructions: this.props.selectedRecipe.instructions,
+      //     category: this.props.selectedRecipe.category,
+      //     user_id:this.props.selectedRecipe.user_id
+      //   }
+      // } else { 
+      

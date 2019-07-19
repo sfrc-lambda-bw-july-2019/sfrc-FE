@@ -90,20 +90,28 @@ export const addRecipe = recipe => dispatch => {
     .catch(err => dispatch({type: ADD_RECIPE_FAILURE, payload:err}));
 };
 
-/*
+
 export const UPDATE_RECIPE_START = "UPDATE_RECIPE_START";
 export const UPDATE_RECIPE_SUCCESS = "UPDATE_RECIPE_SUCCESS";
 export const UPDATE_RECIPE_FAILURE = "UPDATE_RECIPE_FAILURE";
-//UPDATE ENDPOINT DOES NOT YET EXIST, JULY 17 2019
 
-export const updateRecipe = recipe => {
-  console.log("this my console log",recipe);
-}
-*/
 
-export const SELECT_RECIPE_START = "UPDATE_RECIPE_START";
-export const SELECT_RECIPE_SUCCESS = "UPDATE_RECIPE_SUCCESS";
-export const SELECT_RECIPE_FAILURE = "UPDATE_RECIPE_FAILURE";
+export const updateRecipe = recipe => dispatch => {
+  dispatch({ type: UPDATE_RECIPE_START });
+  axios
+    .put(`https://secret-family-recipe-backend.herokuapp.com/api/recipes/${recipe.id}`, recipe, {
+      headers: { Authorization: localStorage.getItem("token") }
+    })
+    .then(res => {
+      dispatch({ type: UPDATE_RECIPE_SUCCESS, payload: res.data });
+    })
+    .catch(err => dispatch({type: UPDATE_RECIPE_FAILURE, payload:err}));
+};
+
+
+export const SELECT_RECIPE_START = "SELECT_RECIPE_START";
+export const SELECT_RECIPE_SUCCESS = "SELECT_RECIPE_SUCCESS";
+export const SELECT_RECIPE_FAILURE = "SELECT_RECIPE_FAILURE";
 
 export const selectRecipe = recipe => dispatch => {
   dispatch({type:SELECT_RECIPE_START,payload: recipe})
