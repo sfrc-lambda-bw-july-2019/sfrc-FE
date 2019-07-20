@@ -17,9 +17,10 @@ const TopNavBar= styled.header`
   border: 2px dashed black;
   display:flex;
   flex-flow:row wrap;
-  justify-content: center;
+  justify-content: space-between;
   width: 80%;
   margin: 0 auto;
+  
 `;
 
 class App extends React.Component {
@@ -27,6 +28,7 @@ class App extends React.Component {
     return (
       <div className="main-container">
         <h1 className="app-title">Secret Family Recipes Cookbook</h1>
+        <h2><em>“Family is forever. Family Recipes Should Be Forever"</em></h2>
         <Router>
           <TopNavBar>
             {this.props.token ? null : <NavLink className="top-nav-link" to='/login'>Login</NavLink>}

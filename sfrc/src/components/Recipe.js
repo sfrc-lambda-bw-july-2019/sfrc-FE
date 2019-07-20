@@ -8,13 +8,15 @@ const RecipeCard = styled.div`
     flex-flow: column wrap;
     align-items: flex-start;
     padding:2%;
-    border: 2px solid blue;
+    border: 2px dashed black;
     font-size: 1.2rem;
     h4{
-        align-self: center;
-        text-align:center;
+        align-self: right;
+        text-align:left;
+        width:100%;
         margin-top: 1%;
-        margin-bottom:0;
+        margin-bottom:4%;
+        border-bottom: 1px solid black;
     }
     h5{
         margin: 0.5%;
@@ -24,10 +26,19 @@ const RecipeCard = styled.div`
         margin: 1%;
         padding: 2%;
     }
-    button {
-        margin: 2%;
+
+    div {
+        display:flex;
+        flex-flow:row wrap;
+        justify-content:space-between;
+        width: 100%;
         align-self:center;
-        font-size: 0.9rem;
+        margin-top: 2%;
+    }
+    div button {
+        margin: 2%;
+        width: 40%;
+        font-size: 0.6rem;
         padding: 2%;
     }
 
@@ -45,8 +56,10 @@ const Recipe = props =>{
             <p>{props.recipe.instructions}</p>
             <h5>Category:</h5>
             <p>{props.recipe.category}</p>
-            <button onClick = {() => props.deleteRecipe(props.recipe.id)}> Delete Recipe</button>
-            <button onClick={()=>props.selectRecipe(props.recipe)}>Update Recipe</button>
+            <div>
+                <button onClick = {() => props.deleteRecipe(props.recipe.id)}> Delete Recipe</button>
+                <button onClick={()=>props.selectRecipe(props.recipe)}>Update Recipe</button>
+            </div>
         </RecipeCard>
     )
 }

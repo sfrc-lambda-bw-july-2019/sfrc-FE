@@ -25,7 +25,7 @@ export const login = creds => dispatch => {
 
 export const REG_START = 'REG_START';
 export const REG_SUCCESS = 'REG_SUCCESS';
-export const REG_FAILURE = 'REG_ERROR'
+export const REG_FAILURE = 'REG_FAILURE'
 
 export const register = credentials => dispatch => {
   dispatch({ type: REG_START });

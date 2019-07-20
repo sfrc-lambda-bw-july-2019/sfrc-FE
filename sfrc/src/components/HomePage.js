@@ -77,8 +77,11 @@ class HomePage extends React.Component {
   render() {
     return (
       <div className="homepage-container">
-        <h1>Find a Family Recipe</h1>
-        <button onClick={this.logoutButton}>Logout</button>
+        <div className="nav-div">
+          <h2>Find a Family Recipe...</h2>
+          <button onClick={this.logoutButton}>Logout</button>
+        </div>
+  
         <form onSubmit={this.submitSearch} className="searchbar-form">
           <input
             onChange={this.searchHandler}
