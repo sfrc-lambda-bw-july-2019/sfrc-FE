@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './HomePage.css'
+import './component.css'
 
 class RecipeForm extends Component {
     constructor(props) {

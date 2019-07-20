@@ -42,6 +42,11 @@ const RecipeCard = styled.div`
         padding: 2%;
     }
 
+    @media (max-width: 500px){
+        width: 70%;
+       margin: 3%;
+    }
+
 `
 
 const Recipe = props =>{

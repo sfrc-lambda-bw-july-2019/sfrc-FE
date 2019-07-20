@@ -11,6 +11,11 @@ const RecipeContainer = styled.div`
   border: 2px dashed black;
   margin-top: 2%;
   margin-bottom: 2%;
+
+  @media (max-width: 500px){
+    flex-flow: column wrap;
+    align-items: center;
+  }
 `
 
 class RecipeList extends React.Component {

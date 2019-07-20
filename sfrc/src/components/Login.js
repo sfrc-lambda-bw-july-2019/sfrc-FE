@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { login } from '../actions';
+import './component.css';
 
 class Login extends React.Component {
   state = {
@@ -28,9 +29,9 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="login-form-container">
         <h1> Login </h1>
-        <form onSubmit={this.handleLogin}>
+        <form className="login-form" onSubmit={this.handleLogin}>
           <input
             onChange={this.handleChange}
             name='username'
