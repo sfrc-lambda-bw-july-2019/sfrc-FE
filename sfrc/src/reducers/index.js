@@ -109,7 +109,8 @@ function reducer(state = initialState, action) {
         return {
           ...state,
           addingRecipe:false,
-          recipes: action.payload
+          recipes: action.payload,
+          filteredRecipes:[]
         }
     case ADD_RECIPE_FAILURE:
         return {
@@ -150,6 +151,7 @@ function reducer(state = initialState, action) {
         return {
           ...state,
           deletingRecipe:false,
+          filteredRecipes: []
           //recipes: [...action.payload]
         }
     case DELETE_RECIPE_FAILURE:
@@ -169,14 +171,15 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         filteredRecipes: state.recipes.filter( recipe => {
-            if (recipe.title.toLowerCase().includes(action.payload.toLowerCase()) || recipe.category.toLowerCase().includes(action.payload.toLowerCase()) ){
+            if(action.payload.length <= 0){
+              return false;
+            }
+            else if (recipe.title.toLowerCase().includes(action.payload.toLowerCase()) || recipe.category.toLowerCase().includes(action.payload.toLowerCase()) ){
               return recipe;
             } else {
               return false;
             }
-
             }
-        
           )
       }
       

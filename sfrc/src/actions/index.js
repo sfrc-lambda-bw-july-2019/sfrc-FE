@@ -111,8 +111,8 @@ export const SEARCH_STARTED = "SEARCH_STARTED";
 
 export const search = param => dispatch => {
   dispatch({type:SEARCH_STARTED, payload: param})
-  console.log("SEARCH Param changed");
-  console.log(param);
+  //console.log("SEARCH Param changed");
+  //console.log(param);
 }
 
 export const SELECT_RECIPE_START = "SELECT_RECIPE_START";
