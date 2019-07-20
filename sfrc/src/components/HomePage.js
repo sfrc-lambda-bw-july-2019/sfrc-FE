@@ -1,12 +1,32 @@
 import React from 'react';
+import './HomePage.css';
 import { connect } from 'react-redux';
-import { logout, getRecipes, addRecipe, deleteRecipe, selectRecipe, updateRecipe} from '../actions';
+import { logout, getRecipes, addRecipe, deleteRecipe, selectRecipe, updateRecipe, search} from '../actions';
 import RecipeList from './RecipeList';
 import RecipeForm from './RecipeForm';
 
 class HomePage extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      searchCriteria:""
+    }
+  }
+
   componentDidMount() {
     this.props.getRecipes();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.searchCriteria &&
+      prevProps.searchCriteria != this.props.searchCriteria) 
+      {
+      this.setState({
+        searchCriteria:this.props.searchCriteria
+      });
+    }
+    //this.props.getRecipes();
   }
 
   addRecipe = recipe => {
@@ -29,6 +49,22 @@ class HomePage extends React.Component {
     this.props.getRecipes();
   }
 
+  submitSearch = event => {
+    event.preventDefault();
+    this.props.search(this.state.searchCriteria);
+    this.setState({
+      searchCriteria:""
+    })
+    this.props.getRecipes();
+  }
+
+  searchHandler= event =>{
+    event.persist();
+    this.setState({
+        [event.target.name]: event.target.value 
+    });
+  }
+
   logoutButton = e => {
     e.preventDefault();
     this.props.logout();
@@ -37,11 +73,21 @@ class HomePage extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="homepage-container">
         <h1>Find a Family Recipe</h1>
         <button onClick={this.logoutButton}>Logout</button>
-        {this.props.fetchingRecipes ? <p>Wait a minute...</p> : <RecipeList deleteRecipe={this.deleteRecipe} selectRecipe={this.selectRecipe}/>}
+        <form onSubmit={this.submitSearch} className="searchbar-form">
+          <input
+            onChange={this.searchHandler}
+            placeholder="stuff"
+            value={this.state.searchCriteria}  
+            name="searchCriteria"
+          /> 
+             
+          <button type="submit">SEARCH RECIPES (by title or category)</button>
+        </form>
         <RecipeForm addRecipe = {this.addRecipe} selectedRecipe={this.props.selectedRecipe} updateRecipe={this.updateRecipe}/>
+        {this.props.fetchingRecipes ? <p>Wait a minute...</p> : <RecipeList deleteRecipe={this.deleteRecipe} selectRecipe={this.selectRecipe}/>}
       </div>
     );
   }
@@ -53,13 +99,14 @@ const mapStateToProps = state => ({
   addingRecipe: state.addingRecipe,
   deletingRecipe: state.deletingRecipe,
   updatingRecipe: state.updatingRecipe,
-  selectedRecipe: state.selectedRecipe
+  selectedRecipe: state.selectedRecipe,
+  filteredRecipes: state.filteredRecipes
 });
 
 export default
   connect(
     mapStateToProps,
-    { logout,getRecipes, addRecipe, deleteRecipe, selectRecipe, updateRecipe}
+    { logout,getRecipes, addRecipe, deleteRecipe, selectRecipe, updateRecipe, search}
   )(HomePage);
 
 /*
