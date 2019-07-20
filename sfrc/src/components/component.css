@@ -18,7 +18,13 @@
     margin: 1%;
     width: 10%;
     background-color: white;
+}
 
+/*CSS for mobile version for nav-div where the logout button lives */
+@media(max-width:500px){
+    .homepage-container .nav-div button{
+        width: 20%;
+    }
 }
 
 
