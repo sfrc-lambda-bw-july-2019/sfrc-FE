@@ -18,7 +18,8 @@ import {
   UPDATE_RECIPE_START,
   UPDATE_RECIPE_SUCCESS,
   UPDATE_RECIPE_FAILURE,
-  SEARCH_STARTED
+  SEARCH_STARTED,
+  LOGOUT
 } from '../actions';
 
 const initialState = {
@@ -181,6 +182,12 @@ function reducer(state = initialState, action) {
             }
             }
           )
+      }
+
+    case LOGOUT:
+      return{
+        ...state,
+        token: null
       }
       
 
