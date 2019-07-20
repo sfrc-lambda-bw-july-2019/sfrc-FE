@@ -17,12 +17,19 @@ code {
 
 header a.top-nav-link {
   margin: 2%;
-  width:5%;
+  width:10%;
   border: 2px solid black;
   padding: 1%;
   text-align:center;
   font-size: 1.0rem;
   text-decoration: none;
+}
+
+@media(max-width:500px){
+  header a.top-nav-link {
+    width:20%;
+    padding: 2%;
+  }
 }
 
 .app-title{
@@ -36,4 +43,14 @@ header a.top-nav-link {
   width:100%;
   max-width: 1000px;
   margin: 0 auto;
+}
+
+.main-container h1{
+  margin-bottom: 0%;
+  text-align: center;
+}
+
+.main-container h2 {
+  margin-top: 1%;
+  margin-bottom: 2%;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import './HomePage.css';
+import './component.css';
 import { connect } from 'react-redux';
 import { logout, getRecipes, addRecipe, deleteRecipe, selectRecipe, updateRecipe, search} from '../actions';
 import RecipeList from './RecipeList';
@@ -85,7 +85,7 @@ class HomePage extends React.Component {
         <form onSubmit={this.submitSearch} className="searchbar-form">
           <input
             onChange={this.searchHandler}
-            placeholder="stuff"
+            placeholder="Search by category or by recipe title"
             value={this.state.searchCriteria}  
             name="searchCriteria"
           /> 
