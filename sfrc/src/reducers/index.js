@@ -124,6 +124,7 @@ function reducer(state = initialState, action) {
         return {
           ...state,
           updatingRecipe: true,
+          selectedRecipe:null
         }
         
     case UPDATE_RECIPE_SUCCESS:
