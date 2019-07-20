@@ -1,7 +1,3 @@
-/*
-  Please de-smurfify this and actions
-*/
-
 import {
   LOGIN_START,
   LOGIN_SUCCESS,
@@ -21,7 +17,9 @@ import {
   SELECT_RECIPE_START,
   UPDATE_RECIPE_START,
   UPDATE_RECIPE_SUCCESS,
-  UPDATE_RECIPE_FAILURE
+  UPDATE_RECIPE_FAILURE,
+  SEARCH_STARTED,
+  LOGOUT
 } from '../actions';
 
 const initialState = {
@@ -37,7 +35,8 @@ const initialState = {
   success: false,
   registerUser: false,
   recipes:[],
-  selectedRecipe:null
+  selectedRecipe:null,
+  filteredRecipes:[]
 };
 
 function reducer(state = initialState, action) {
@@ -111,7 +110,8 @@ function reducer(state = initialState, action) {
         return {
           ...state,
           addingRecipe:false,
-          recipes: action.payload
+          recipes: action.payload,
+          filteredRecipes:[]
         }
     case ADD_RECIPE_FAILURE:
         return {
@@ -152,6 +152,7 @@ function reducer(state = initialState, action) {
         return {
           ...state,
           deletingRecipe:false,
+          filteredRecipes: []
           //recipes: [...action.payload]
         }
     case DELETE_RECIPE_FAILURE:
@@ -166,6 +167,28 @@ function reducer(state = initialState, action) {
           ...state,
           selectedRecipe: action.payload
         }
+    
+    case SEARCH_STARTED:
+      return {
+        ...state,
+        filteredRecipes: state.recipes.filter( recipe => {
+            if(action.payload.length <= 0){
+              return false;
+            }
+            else if (recipe.title.toLowerCase().includes(action.payload.toLowerCase()) || recipe.category.toLowerCase().includes(action.payload.toLowerCase()) ){
+              return recipe;
+            } else {
+              return false;
+            }
+            }
+          )
+      }
+
+    case LOGOUT:
+      return{
+        ...state,
+        token: null
+      }
       
 
     default:
@@ -176,7 +199,7 @@ function reducer(state = initialState, action) {
 export default reducer;
 
 
-
+  //For Reference here is what a recipe should look like. 
   // recipes: [
   //   {
   //     id: 0,

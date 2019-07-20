@@ -29,8 +29,8 @@ class App extends React.Component {
         <h1 className="app-title">Secret Family Recipes Cookbook</h1>
         <Router>
           <TopNavBar>
-            <NavLink className="top-nav-link" to='/login'>Login</NavLink>
-            <NavLink className="top-nav-link" to='/register'>Sign Up</NavLink>
+            {this.props.token ? null : <NavLink className="top-nav-link" to='/login'>Login</NavLink>}
+            {this.props.token ? null :<NavLink className="top-nav-link" to='/register'>Sign Up</NavLink>}
           </TopNavBar>
           <Route exact path='/login' component={Login} />
           <Route exact path='/register' component={Register} />
@@ -43,7 +43,8 @@ class App extends React.Component {
 
 const mapStateToProps = state => ({
   users: state.users,
-  recipes: state.recipes
+  recipes: state.recipes,
+  token:state.token
 });
 
 export default connect(
