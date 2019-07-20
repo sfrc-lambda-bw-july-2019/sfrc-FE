@@ -27,6 +27,9 @@ class HomePage extends React.Component {
       });
     }
     //this.props.getRecipes();
+    if (this.props.deletingRecipe || this.props.addingRecipe){
+      this.props.getRecipes();
+    }
   }
 
   addRecipe = recipe => {
