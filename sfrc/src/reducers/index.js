@@ -35,7 +35,7 @@ const initialState = {
   registerUser: false,
   recipes:[],
   selectedRecipe:null,
-  filteredRecipes:['not empty', 'not empty']
+  filteredRecipes:[]
 };
 
 function reducer(state = initialState, action) {
@@ -168,7 +168,16 @@ function reducer(state = initialState, action) {
     case SEARCH_STARTED:
       return {
         ...state,
-        filteredRecipes: action.payload
+        filteredRecipes: state.recipes.filter( recipe => {
+            if (recipe.title.toLowerCase().includes(action.payload.toLowerCase()) || recipe.category.toLowerCase().includes(action.payload.toLowerCase()) ){
+              return recipe;
+            } else {
+              return false;
+            }
+
+            }
+        
+          )
       }
       
 

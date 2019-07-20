@@ -18,12 +18,20 @@ class RecipeList extends React.Component {
   render() {
     return (
       <RecipeContainer>
-        {this.props.recipes.map(recipe => (
-          <Recipe recipe = {recipe} 
-                  key={recipe.id} 
-                  deleteRecipe={this.props.deleteRecipe} 
-                  selectRecipe={this.props.selectRecipe}/> 
-        ))}
+        
+        {this.props.filteredRecipes.length > 0 ? 
+                this.props.filteredRecipes.map(
+                  recipe =>  <Recipe recipe = {recipe} 
+                                     key={recipe.id} 
+                                     deleteRecipe={this.props.deleteRecipe} 
+                                      selectRecipe={this.props.selectRecipe}/> ): 
+                this.props.recipes.map(
+                  recipe => (
+                    <Recipe recipe = {recipe} 
+                            key={recipe.id} 
+                            deleteRecipe={this.props.deleteRecipe} 
+                            selectRecipe={this.props.selectRecipe}/> 
+                  ))}
       </RecipeContainer>
     );
   }
