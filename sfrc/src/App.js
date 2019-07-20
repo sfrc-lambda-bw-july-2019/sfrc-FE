@@ -30,7 +30,7 @@ class App extends React.Component {
         <Router>
           <TopNavBar>
             {this.props.token ? null : <NavLink className="top-nav-link" to='/login'>Login</NavLink>}
-            <NavLink className="top-nav-link" to='/register'>Sign Up</NavLink>
+            {this.props.token ? null :<NavLink className="top-nav-link" to='/register'>Sign Up</NavLink>}
           </TopNavBar>
           <Route exact path='/login' component={Login} />
           <Route exact path='/register' component={Register} />
