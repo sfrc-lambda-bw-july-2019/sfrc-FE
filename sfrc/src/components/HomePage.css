@@ -4,9 +4,28 @@
     align-items: center;
 }
 
+
+/*CSS for nav-div where the logout button lives*/
+.homepage-container .nav-div{
+    display:flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    width: 100%;
+    padding: 2%;
+}
+
+.homepage-container .nav-div button{
+    margin: 1%;
+    width: 10%;
+    background-color: white;
+
+}
+
+
+
 .searchbar-form {
-    border: 3px dashed pink;
-    margin: 2%;
+    border: 3px dashed black;
+    margin: 3%;
     width: 100%;
     padding: 2%;
     display: flex;
@@ -18,4 +37,30 @@
     margin-right: 2%;
     margin-left: 2%;
     width: 60%;
+}
+
+
+/*
+CSS for the Update/Recipe Form
+*/
+
+form.recipe-form {
+    border: 2px solid black;
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    padding: 2%;
+}
+
+form.recipe-form input {
+    margin: 1%;
+    width: 10%;
+}
+
+form.recipe-form button{
+    text-decoration:none;
+    background-color:none;
+    text-align: center;
+    
 }

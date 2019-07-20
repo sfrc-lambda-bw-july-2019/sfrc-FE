@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-
-
-
+import './HomePage.css'
 
 class RecipeForm extends Component {
     constructor(props) {
@@ -74,8 +72,8 @@ class RecipeForm extends Component {
   
     render() {
       return (
-        <div>
-          <form  onSubmit={this.submitRecipe}>
+        
+          <form  className="recipe-form" onSubmit={this.submitRecipe}>
             <input
               onChange={this.handleInputChange}
               placeholder="title"
@@ -108,7 +106,7 @@ class RecipeForm extends Component {
             />
             <button type="submit">{this.props.selectedRecipe ? "Update Recipe":"Add Recipe to the Secret Cookbook!!!"}</button>
           </form>
-        </div>
+        
       );
     }
   }
