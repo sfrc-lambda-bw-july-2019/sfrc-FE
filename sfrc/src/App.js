@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { connect } from 'react-redux';
+import LandingPage from './components/LandingPage';
 import Login from './components/Login';
 import Register from './components/Register';
 import PrivateRoute from './components/PrivateRoute';
@@ -13,25 +14,40 @@ import {
   NavLink
 } from 'react-router-dom';
 
-const TopNavBar= styled.header`
-  border: 2px dashed black;
-  display:flex;
-  flex-flow:row wrap;
-  justify-content: center;
-  width: 80%;
+const TopNavBar = styled.header`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 900px;
   margin: 0 auto;
 `;
 
 class App extends React.Component {
   render() {
     return (
-      <div className="main-container">
-        <h1 className="app-title">Secret Family Recipes Cookbook</h1>
+      <div className='main-container'>
+        <h1 className='app-title'>Secret Family Recipes Cookbook</h1>
         <Router>
           <TopNavBar>
-            {this.props.token ? null : <NavLink className="top-nav-link" to='/login'>Login</NavLink>}
-            {this.props.token ? null :<NavLink className="top-nav-link" to='/register'>Sign Up</NavLink>}
+            <NavLink className='top-nav-link' to='/'>
+              LOGO
+            </NavLink>
+            <NavLink className='top-nav-link' to='/homepage'>
+              Recipes
+            </NavLink>
+            {this.props.token ? null : (
+              <NavLink className='top-nav-link' to='/login'>
+                Login
+              </NavLink>
+            )}
+            {this.props.token ? null : (
+              <NavLink className='top-nav-link' to='/register'>
+                Sign Up
+              </NavLink>
+            )}
           </TopNavBar>
+          <Route exact path='/' component={LandingPage} />
           <Route exact path='/login' component={Login} />
           <Route exact path='/register' component={Register} />
           <PrivateRoute path='/homepage' component={HomePage} />
@@ -44,7 +60,7 @@ class App extends React.Component {
 const mapStateToProps = state => ({
   users: state.users,
   recipes: state.recipes,
-  token:state.token
+  token: state.token
 });
 
 export default connect(
