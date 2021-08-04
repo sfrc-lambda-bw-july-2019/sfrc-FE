@@ -1,0 +1,145 @@
+.homepage-container{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+
+/*CSS for nav-div where the logout button lives*/
+.homepage-container .nav-div{
+    display:flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    width: 100%;
+    padding: 2%;
+}
+
+.homepage-container .nav-div button{
+    margin: 1%;
+    width: 10%;
+    background-color: white;
+
+}
+
+
+/*CSS for Searchbar Form*/
+
+.searchbar-form {
+    border: 2px dashed black;
+    margin: 3%;
+    width: 100%;
+    padding: 2%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.searchbar-form input {
+    margin-right: 2%;
+    margin-left: 2%;
+    width: 60%;
+}
+
+.searchbar-form button{
+    width:20%;
+    font-size: 0.9rem;
+}
+
+/*CSS for Mobile Version (500px) of Searchbar Form*/
+
+@media(max-width:500px){
+    .searchbar-form {
+        
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .searchbar-form input {
+        margin-right: 2%;
+        margin-left: 2%;
+        width: 70%;
+        padding: 2%;
+        font-size: 1.0rem;
+    }
+
+    .searchbar-form button{
+        margin:3%;
+        width: 70%;
+    }
+}
+
+
+/*
+CSS for the Update/Recipe Form
+*/
+
+form.recipe-form {
+    border: 2px dashed black;
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    padding: 2%;
+    margin: 1%;
+}
+
+form.recipe-form input {
+    margin: 1%;
+    width: 10%;
+}
+
+form.recipe-form button{
+    text-decoration:none;
+    background-color:none;
+    text-align: center;
+    
+}
+
+/*CSS for Mobile Version of Recipe Form */
+
+@media(max-width:500px){
+    form.recipe-form {
+        flex-flow: column wrap;
+        align-items: center;
+        margin-top: 2%;
+        padding:3%;
+    }
+    form.recipe-form input{
+        width:70%;
+        margin: 3%;
+        padding:2%;
+    }
+
+    form.recipe-form button{
+        padding: 3%;
+
+        
+    }
+}
+
+/*CSS for Login Form*/
+.login-form-container{
+    width: 40%;
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.login-form{
+    width: 100%;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+}
+
+.login-form input{
+    margin: 2%;
+    padding: 3%;
+    width: 70%;
+}
+
+.login-form button{
+    width: 40%;
+    padding: 2%;
+}

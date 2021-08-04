@@ -8,9 +8,14 @@ const RecipeContainer = styled.div`
   flex-flow: row wrap;
   justify-content:center;
   width: 100%;
-  border: 2px solid red;
+  border: 2px dashed black;
   margin-top: 2%;
   margin-bottom: 2%;
+
+  @media (max-width: 500px){
+    flex-flow: column wrap;
+    align-items: center;
+  }
 `
 
 class RecipeList extends React.Component {
@@ -24,13 +29,17 @@ class RecipeList extends React.Component {
                   recipe =>  <Recipe recipe = {recipe} 
                                      key={recipe.id} 
                                      deleteRecipe={this.props.deleteRecipe} 
-                                      selectRecipe={this.props.selectRecipe}/> ): 
+                                      selectRecipe={this.props.selectRecipe}
+                                      selectedRecipe={this.props.selectedRecipe}
+                                      /> ): 
                 this.props.recipes.map(
                   recipe => (
                     <Recipe recipe = {recipe} 
                             key={recipe.id} 
                             deleteRecipe={this.props.deleteRecipe} 
-                            selectRecipe={this.props.selectRecipe}/> 
+                            selectRecipe={this.props.selectRecipe}
+                            selectedRecipe={this.props.selectedRecipe}
+                            /> 
                   ))}
       </RecipeContainer>
     );
@@ -39,7 +48,8 @@ class RecipeList extends React.Component {
 
 const mapStatetoProps = state => ({
   recipes: state.recipes,
-  filteredRecipes: state.filteredRecipes
+  filteredRecipes: state.filteredRecipes,
+  selectedRecipe: state.selectRecipe
 })
 
 export default connect(mapStatetoProps, {})(RecipeList);
